@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>cityselect-lite的demo</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.1/seed-min.js" charset="utf-8"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<!--H5项目将替换为KISSY MINI-->
+	<!--
+	<script src="http://g.tbcdn.cn/kissy/m/0.2.1/mini-full.js" charset="utf-8"></script>
+	-->
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        h1{
+            margin: 0 0 20px 0;
+            height: 50px;
+            line-height: 50px;
+            color: #fff;
+            background-color: #3498db;
+        }
+
+        .content{
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>cityselect-lite的demo</h1>
+
+    <div class="content">
+        
+        <select name="" id="province"></select>
+        <select name="" id="city"></select>
+        <select name="" id="area"></select>
+
+        <p><label for="province_name">province: </label><span class="province_name"></span></p>
+        <p><label for="city_name">city: </label><span class="city_name"></span></p>
+        <p><label for="area_name">area: </label><span class="area_name"></span></p>
+
+        <button class="J_Select_Province">选择天津</button>
+
+        <button class="J_Destroy">销毁组件对象</button>
+
+    </div>
+    
+    <script type="text/javascript">
+        KISSY.config({
+            packages : [
+                {
+                    name                   : "test",
+                    path                   : "../",
+                    charset                : "utf-8",
+                    ignorePackageNameInUri : true,
+                    debug                  : true,
+                    combine                : false
+                }
+            ]
+        });
+        KISSY.use("test/index,node,event", function (S, CitySelector) {
+            var citySelect = new CitySelector({
+                province_select: "#province",
+                city_select: "#city",
+                area_select: "#area",
+                initProvince: "610000",
+                initCity: "610200"
+            });
+
+            citySelect.on("afterProvinceChange",function(e){
+                S.one(".province_name").text(this.get("province"));
+            });
+
+            citySelect.on("afterCityChange",function(e){
+                S.one(".city_name").text(this.get("city"));
+            });
+
+            citySelect.on("afterAreaChange",function(e){
+                S.one(".area_name").text(this.get("area"));
+            });
+
+            S.one(".J_Select_Province").on("click",function(){
+                citySelect.setProvince("120000");
+            });
+
+            S.one(".J_Destroy").on("click",function(){
+                citySelect.destroy();
+            });
+
+        })
+    </script>
+</body>
+</html>
