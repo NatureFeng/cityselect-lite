@@ -3,8 +3,8 @@
 CityselectLite是一个精简版的城市级联组件。
 
 - Version: 0.0.1
-- Author: 绮礼
-- E-Mail: <tianran.ftr@alibaba-inc.com> 
+- Author: NatureFeng
+- E-Mail: <ftrsicun@gmail.com> 
 
 ## 功能
 
