@@ -31,8 +31,9 @@ KISSY.add(function(S, Base, CityData) {
          */
         destructor: function() {
             var _ = this;
-            _.province && _.province.detach("change.city");
+            _.province && _.province.detach("change.province");
             _.city && _.city.detach("change.city");
+            _.area && _.area.detach("change.area");
         },
 
         /**
@@ -53,7 +54,7 @@ KISSY.add(function(S, Base, CityData) {
          */
         _bind: function() {
             var _ = this;
-            _.province && _.province.on("change.city", function() {
+            _.province && _.province.on("change.province", function() {
                 _.set("province", _.province[0].options[_.province[0].selectedIndex].text);
                 _._rendercity();
                 _.set("city", _.city[0].options[0].text);
@@ -67,8 +68,9 @@ KISSY.add(function(S, Base, CityData) {
                 _.set("area", _.area[0].options[0]?_.area[0].options[0].text:"");
             });
             
-            _.area && _.area.on("change.city", function() {
-                _.set("area", _.area[0].options[0]?_.area[0].options[0].text:"");
+            _.area && _.area.on("change.area", function() {
+                console.log(1);
+                _.set("area", _.area[0].options[_.area[0].selectedIndex]?_.area[0].options[_.area[0].selectedIndex].text:"");
             });
         },
 

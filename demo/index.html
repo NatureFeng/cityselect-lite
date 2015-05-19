@@ -78,6 +78,7 @@
             });
 
             citySelect.on("afterAreaChange",function(e){
+                console.log(2);
                 S.one(".area_name").text(this.get("area"));
             });
 
